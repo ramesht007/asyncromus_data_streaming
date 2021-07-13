@@ -89,7 +89,7 @@ async def producer(queue):
         await queue.put(token)
         await rnd_sleep(.1)
 ```
-###### Consumer
+##### Consumer
 
 ```python
 async def consumer(queue):
