@@ -69,3 +69,35 @@ token in found it will be in suspended state.
 python consumer.py
 ```
 
+## Run producer and consumer without kafka 
+For asyncronus use case without kafka.
+
+RUN
+```
+python async_prod_con.py
+```
+##### Producer
+
+```python
+async def producer(queue):
+    while True:
+        # produce a token and send it to a consumer
+        token = random.random()
+        print(f'produced {token}')
+        if token < .05:
+            break
+        await queue.put(token)
+        await rnd_sleep(.1)
+```
+###### Consumer
+
+```python
+async def consumer(queue):
+    while True:
+        token = await queue.get()
+        # process the token received from a producer
+        await rnd_sleep(.3)
+        queue.task_done()
+        print(f'consumed {token}')
+```
+
