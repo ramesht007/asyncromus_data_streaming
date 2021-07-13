@@ -11,7 +11,7 @@ def producer():
         value_serializer=lambda x: dumps(x).encode('utf-8'))
 
 
-    for j in range(9):
+    for j in range(9999):
         print("Iteration", j)
         data1 = {'counter_1': j}
         producer.send('1_topic_test', value=data1)
